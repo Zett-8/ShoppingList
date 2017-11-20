@@ -11,13 +11,21 @@
     <title>Shopping List</title>
 </head>
 <body>
-<form method="post">
+{% block content %}
+<form action="{% url 'main:index' %}" method="post">{% csrf_token %}
+    <div class="form-group">
+        <label>Things to buy</label>
+    </div>
+    {{ form.title }}
 
-  <div class="form-group">
-    <label>Things to buy</label>
-    <input type="text" class="form-control" placeholder="e.g. Eggs">
-  </div>
-  <button type="submit" value="post" class="btn btn-primary">ADD TO LIST</button>
+  <button type="submit" name="post_stuff" class="btn btn-primary">ADD TO LIST</button>
 </form>
+<br />
+
+    {% for s in stuff %}
+        <h3>+ {{ s.title }}</h3>
+    {% endfor %}
+{% endblock %}
+
 </body>
 </html>
