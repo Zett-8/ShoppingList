@@ -1,30 +1,28 @@
-from django.shortcuts import render, redirect, render_to_response
-from django.template import RequestContext
-from django.views import generic
+from django.shortcuts import render, redirect
+from django.http import HttpResponse
 from django.forms import ModelForm
 
 from .models import Stuff
 
 
-class PostStuff(ModelForm):
+class StuffForm(ModelForm):
     class Meta:
         model = Stuff
         fields = ('title',)
 
 
-class IndexView(generic.ListView):
-    template_name = 'main/index.html'
-
-    def get_queryset(self):
-        return Stuff.objects.all()
-
-
 def index(request):
-    form = PostStuff(request.POST)
     stuff = Stuff.objects.all()
+    form = StuffForm(request.POST)
+    test = form
     if request.method == "POST":
         if form.is_valid():
             form.save()
-            return redirect('main:index')
+            return redirect('index')
 
     return render(request, 'main/index.html', {'form': form, 'stuff': stuff})
+
+
+def delete(request, pk):
+    Stuff.objects.filter(id=pk).delete()
+    return redirect('/')

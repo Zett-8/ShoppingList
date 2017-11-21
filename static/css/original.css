@@ -1,0 +1,14 @@
+.list-group-item h3{
+    float: left;
+    width: 100%;
+}
+
+.list-group-item form{
+    text-align: right;
+    width: 100px;
+    float: right;
+}
+
+h1{
+    text-align: center;
+}

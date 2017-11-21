@@ -2,6 +2,6 @@ from django.db import models
 
 
 class Stuff(models.Model):
-    title = models.CharField(max_length=40)
+    title = models.CharField(max_length=100)
 
 
