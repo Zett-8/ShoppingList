@@ -12,3 +12,7 @@
 h1{
     text-align: center;
 }
+
+#id_title{
+    width: 400px;
+}
