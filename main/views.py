@@ -14,7 +14,6 @@ class StuffForm(ModelForm):
 def index(request):
     stuff = Stuff.objects.all()
     form = StuffForm(request.POST)
-    test = form
     if request.method == "POST":
         if form.is_valid():
             form.save()
@@ -25,4 +24,4 @@ def index(request):
 
 def delete(request, pk):
     Stuff.objects.filter(id=pk).delete()
-    return redirect('/')
+    return redirect('index')
