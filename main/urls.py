@@ -17,8 +17,11 @@ Including another URLconf
 from django.conf.urls import url, patterns
 from . import views
 
-
-urlpatterns = patterns("",
+app_name = 'main'
+urlpatterns = [
     url(r'^$', views.index, name='index'),
-    url(r'^(?P<pk>[0-9]+)$', views.delete, name='delete')
-)
+    url(r'^(?P<pk>[0-9]+)$', views.delete, name='delete'),
+    url(r'^deleteall', views.deleteall, name='deleteall'),
+]
+
+

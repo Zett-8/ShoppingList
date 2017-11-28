@@ -1,24 +1,21 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    {% load staticfiles %}
-    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" type="text/css">
-    <link rel="stylesheet" href="{% static 'css/original.css' %}" type="text/css">
-    <link rel="shortcut icon" href="{% static 'images/f.ico' %}">
-    <link rel="apple-touch-icon" sizes="128x128" href="{% static 'images/f.png' %}">
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
-
-    <title>Shopping List</title>
-</head>
-<body>
-<div class="container">
+{% extends 'main/base.html' %}
+{% block nav %}
+    <nav class="navbar navbar-dark bg-dark">
+        <a class="navbar-brand h1" href="/">Your shopping list</a>
+        <div>
+        <span style="padding-right: 10px;" class="navbar-text">
+            log in as || {{ request.user }} ||
+        </span>
+        <form action="{% url 'accounts:logout' %}" style="float: right;">
+            <input class="btn btn btn-outline-info" type="submit" value="Log out" />
+        </form>
+        </div>
+    </nav>
+{% endblock %}
 {% block content %}
-    <h1>Things to buy</h1>
+
     <hr />
-    <form action="{% url 'index' %}" method="post">
+    <form style="text-align: right" action="{% url 'main:index' %}" method="post">
         {% csrf_token %}
         {{ form.title }}
         <input type="submit" value='ADD TO LIST' class="btn btn-info" />
@@ -28,15 +25,23 @@
     {% for s in stuff %}
         <ul class="list-group">
             <li class="list-group-item">
-                <h3>{{ s.title }}</h3>
-                <form action="{% url 'delete' s.id %}" method="post">
+
+                <form action="{% url 'main:delete' s.id %}" method="post">
                     {% csrf_token %}
                     <input type="submit" value="BOUGHT" class="btn btn-primary" />
                 </form>
+                <h3>{{ s.title }}</h3>
             </li>
         </ul>
     {% endfor %}
+    <br />
+    <form method="post" action="{% url 'main:deleteall' %}">
+        {% csrf_token %}
+        <input type="submit" class="btn btn-outline-secondary btn-lg btn-block" value="DELETE ALL" />
+    </form>
 {% endblock %}
-</div>
-</body>
-</html>
+{% block Fnav %}
+    <nav class="navbar fixed-bottom navbar-dark bg-dark">
+
+    </nav>
+{% endblock %}

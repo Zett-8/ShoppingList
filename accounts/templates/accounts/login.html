@@ -1,0 +1,19 @@
+{% extends 'main/base.html' %}
+{% block content %}
+<div class="loginSignup">
+    <h4>Log in</h4>
+    <br>
+    <form method="post" action="{% url 'accounts:login' %}">
+        {% csrf_token %}
+        <div class="form-group">
+            <labal for="username">UserName</labal><br>
+            {{ form.username }}
+        </div>
+        <div class="form-group">
+            <labal for="password">Password</labal><br>
+            {{ form.password }}
+        </div>
+        <input type="submit" class="btn btn-info" value="Login">
+    </form>
+</div>
+{% endblock %}
