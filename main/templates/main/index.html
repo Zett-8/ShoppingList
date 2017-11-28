@@ -21,7 +21,6 @@
         <input type="submit" value='ADD TO LIST' class="btn btn-info" />
     </form>
     <br />
-    {% if stuff %}
         {% for s in stuff %}
             <ul class="list-group">
                 <li class="list-group-item">
@@ -34,7 +33,6 @@
                 </li>
             </ul>
         {% endfor %}
-    {% endif %}
     <br />
     <form method="post" action="{% url 'main:deleteall' %}">
         {% csrf_token %}

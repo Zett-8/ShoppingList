@@ -14,10 +14,6 @@ class StuffForm(ModelForm):
 
 def index(request):
     if request.user.is_active:
-        try:
-            stuff = Stuff.objects.filter(user=request.user)
-        except:
-            pass
         form = StuffForm(request.POST)
         if request.method == "POST":
             if form.is_valid():
@@ -25,8 +21,7 @@ def index(request):
                 form.user = request.user
                 form.save()
                 return redirect('main:index')
-
-        return render(request, 'main/index.html', {'form': form, 'stuff': stuff})
+        return render(request, 'main/index.html', {'form': form, 'stuff': Stuff.objects.filter(user=request.user), })
     else:
         return render(request, 'main/welcome.html')
 
