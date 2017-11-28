@@ -14,7 +14,10 @@ class StuffForm(ModelForm):
 
 def index(request):
     if request.user.is_active:
-        stuff = Stuff.objects.filter(user=request.user)
+        try:
+            stuff = Stuff.objects.filter(user=request.user)
+        except:
+            pass
         form = StuffForm(request.POST)
         if request.method == "POST":
             if form.is_valid():
