@@ -21,19 +21,21 @@
         <input type="submit" value='ADD TO LIST' class="btn btn-info" />
     </form>
     <br />
+    {% try %}
+        {% for s in stuff %}
+            <ul class="list-group">
+                <li class="list-group-item">
 
-    {% for s in stuff %}
-        <ul class="list-group">
-            <li class="list-group-item">
-
-                <form action="{% url 'main:delete' s.id %}" method="post">
-                    {% csrf_token %}
-                    <input type="submit" value="BOUGHT" class="btn btn-primary" />
-                </form>
-                <h3>{{ s.title }}</h3>
-            </li>
-        </ul>
-    {% endfor %}
+                    <form action="{% url 'main:delete' s.id %}" method="post">
+                        {% csrf_token %}
+                        <input type="submit" value="BOUGHT" class="btn btn-primary" />
+                    </form>
+                    <h3>{{ s.title }}</h3>
+                </li>
+            </ul>
+        {% endfor %}
+    {% except %}
+    {% endtry %}
     <br />
     <form method="post" action="{% url 'main:deleteall' %}">
         {% csrf_token %}
