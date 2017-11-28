@@ -7,4 +7,4 @@ class Stuff(models.Model):
     user = models.CharField(default=User, max_length=100)
 
     def __str__(self):
-        return self.user
+        return self.title
