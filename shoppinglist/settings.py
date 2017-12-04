@@ -23,6 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/1.9/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
+<<<<<<< HEAD
 HOSTNAME = gethostname()
 
 if 'local' in HOSTNAME:
@@ -31,6 +32,10 @@ if 'local' in HOSTNAME:
 else:
     SECRET_KEY = environ['SECRET_KEY']
     
+=======
+SECRET_KEY = ''
+
+>>>>>>> origin/master
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 ALLOWED_HOSTS = ['localhost', '127.0.0.1', '.herokuapp.com']
@@ -149,4 +154,7 @@ STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 LOGIN_URL='/accounts/login.html'
 LOGIN_REDIRECT_URL='/'
 LOGOUT_REDIRECT_URL='/'
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/master
