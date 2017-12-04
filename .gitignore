@@ -4,3 +4,4 @@ staticfiles
 db.sqlite3
 mock.psd
 shoppinglist/local_settings.py
+shoppinglist/secret_key.txt
